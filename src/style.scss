@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+$main-red: #e03131;
+$main-green: #2f9e44;
+$main-blue: #3bc9db;
+$main-background: #298d99;
+$todo-list-background: #fff;
+$heading-color: #0c282c;
+$text-color: #0c282c;
+$input-text: #7d7d7d;
+$placeholder-input: #bbb;
+$input-background: #f7f7f7;
+$red-1: #f3adad;
+$red-2: #e65a5a;
+$red-3: #e03131;
+$green-1: #acd8b4;
+$green-2: #59b169;
+$green-3: #2f9e44;
+
+@mixin center-flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-config {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+.todo-app {
+  @include center-flex-box;
+  background-color: $main-background;
+  min-height: 100vh;
+}
+
+.todo-app-container {
+  background-color: $todo-list-background;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.alert {
+  @include center-flex-box;
+  min-height: 1.2rem;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  align-self: stretch;
+  margin-bottom: 1rem;
+  &--warning {
+    color: $red-3;
+    background-color: $red-1;
+  }
+  &--success {
+    color: $green-3;
+    background-color: $green-1;
+  }
+  &--none {
+    background: none;
+    color: none;
+  }
+}
+
+.heading {
+  color: $heading-color;
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.todo-form {
+  width: 100%;
+  display: flex;
+  margin-bottom: 1.8rem;
+}
+
+.form-input {
+  flex-grow: 2;
+  padding: 0.5rem 1rem;
+  color: $input-text;
+  background-color: $input-background;
+  border-color: transparent;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  &::placeholder {
+    color: $placeholder-input;
+  }
+}
+
+.form-btn {
+  @include button-config;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  background-color: #89dfe9;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  &:hover,
+  &:active {
+    color: #fff;
+    background-color: $main-blue;
+  }
+}
+
+.todo {
+  &-list {
+    list-style: none;
+    margin-bottom: 2rem;
+    align-self: stretch;
+  }
+  &-item {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    transition: all 0.4s ease-in;
+    &:hover {
+      background-color: $input-background;
+    }
+    &__content {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $text-color;
+    }
+    &__btn-container {
+      .btn {
+        @include button-config;
+        &--edit {
+          color: $green-2;
+          &:hover,
+          &:active {
+            color: $green-3;
+          }
+        }
+        &--delete {
+          color: $red-2;
+          &:hover,
+          &:active {
+            color: $red-3;
+          }
+        }
+      }
+      .btn + .btn {
+        margin-left: 0.4rem;
+      }
+    }
+  }
+  &-item + &-item {
+    margin-top: 0.5rem;
+  }
+}
+
+.clear-items {
+  @include button-config;
+  font-weight: 600;
+  color: $red-2;
+  &:hover,
+  &:active {
+    color: $red-3;
+  }
+}
